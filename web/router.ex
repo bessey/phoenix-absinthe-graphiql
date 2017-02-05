@@ -9,8 +9,14 @@ defmodule AbsintheReact.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  pipeline :graphql do
+    plug Plug.Parsers,
+      parsers: [:urlencoded, :multipart, :json],
+      pass: ["*/*"],
+      json_decoder: Poison
+
+    forward "/graphql", Absinthe.Plug,
+      schema: AbsintheReact.Schema
   end
 
   scope "/", AbsintheReact do
@@ -20,7 +26,7 @@ defmodule AbsintheReact.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", AbsintheReact do
-  #   pipe_through :api
-  # end
+  scope "/graphql", AbsintheReact do
+    pipe_through :graphql
+  end
 end
