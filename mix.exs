@@ -19,7 +19,7 @@ defmodule AbsintheReact.Mixfile do
   def application do
     [mod: {AbsintheReact, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :absinthe]]
+                    :phoenix_ecto, :postgrex, :absinthe, :timex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,8 @@ defmodule AbsintheReact.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:absinthe, "~> 1.2"},
-     {:absinthe_plug, "~> 1.1"}]
+     {:absinthe_plug, "~> 1.1"},
+     {:timex, "~> 3.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

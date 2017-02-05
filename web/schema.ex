@@ -1,12 +1,15 @@
 defmodule AbsintheReact.Schema do
 
   use Absinthe.Schema
-  import_types AbsintheReact.ItemType
+  use Timex
+
+  import_types AbsintheReact.Scalars
+  import_types AbsintheReact.Types
 
   # Example data
   @items %{
-    "foo" => %{id: "foo", name: "Foo"},
-    "bar" => %{id: "bar", name: "Bar"}
+    "foo" => %{id: "foo", name: "Foo", created_at: Timex.now},
+    "bar" => %{id: "bar", name: "Bar", created_at: Timex.now}
   }
 
   query do
